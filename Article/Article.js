@@ -102,7 +102,106 @@ const data = [
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
+*/
 
+
+
+//<h2> Creator -- 
+function h2Creator(article_data){
+
+  const h2 = document.createElement('h2');
+
+  h2.textContent = article_data.title;
+
+  return h2;
+
+  console.log(h2)
+}
+
+
+//<p> Creator -- 
+function pCreator(p_content, p_class = ''){
+
+  //array to hold all 4 <p>
+  const pArray = [];
+
+  const p = document.createElement('p');
+
+      p.className = p_class;
+      p.textContent = p_content;
+   
+  return p;
+}
+
+
+
+//<span> Creator -- Next most nested element creator function
+function spanCreator(){
+
+    const sp = document.createElement('span');
+
+    sp.classList.add('expandButton');
+
+    console.log(sp);
+
+    return sp;
+}
+
+
+//Component creator function
+function articleCreator(data){
+
+    const article = document.createElement('div');
+
+    const h2 = document.createElement("h2");
+    const paraDate = document.createElement("p");
+    const paraOne = document.createElement("p");
+    const paraTwo = document.createElement("p");
+    const paraThree = document.createElement("p");
+    const mySpan = document.createElement("span")
+
+
+    h2.textContent = data.title; // adding title to heading with parameter 'title'
+    paraDate.textContent = data.date; // adding date
+    paraOne.textContent = data.firstParagraph;
+    paraTwo.textContent = data.secondParagraph;
+    paraThree.textContent = data.thirdParagraph;
+    mySpan.textContent = "click"
+
+    article.classList.add("article");
+    paraDate.classList.add("date");
+    mySpan.classList.add("expandButton");
+
+
+    mySpan.addEventListener('click', () => {
+
+    article.classList.toggle('article-open')
+      
+    })
+
+    article.appendChild(h2)
+    article.appendChild(paraDate)
+    article.appendChild(paraOne)
+    article.appendChild(paraTwo)
+    article.appendChild(paraThree)
+    article.appendChild(mySpan)
+
+    return article;
+
+}
+ 
+
+const articles_div = document.querySelector('.articles');
+
+data.forEach((article_data) => {
+
+  articles_div.appendChild(articleCreator(article_data));
+
+});
+
+
+
+/*
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
@@ -112,3 +211,42 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+
+
+
+//<p> Creator -- 
+// function pCreator(article_data){
+
+//   //array to hold all 4 <p>
+//   const pArray = [];
+
+//   const p = document.createElement('p');
+
+//       p.textContent = article_data.date;
+   
+//   //Add first <p> element with title to array Holder
+//   pArray.push(p);
+
+//   //array to hold paragraph text for easier loop and assignment
+//   const pParagraphText = [
+//     article_data.firstParagraph,
+//     article_data.secondParagraph,
+//     article_data.thirdParagraph
+//   ];
+
+  
+//   //Loop through Paragraph Text Array and assign Text
+//   pParagraphText.forEach((element) => {
+      
+//       const p = document.createElement('p');
+
+//       p.textContent = element;
+
+//       pArray.push(p);
+//   });
+   
+//   console.log(pArray);
+//   //Return array with all <p's>
+//   return pArray;
+// }
